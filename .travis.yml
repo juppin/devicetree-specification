@@ -30,3 +30,19 @@ script:
   - make html
   - make singlehtml
 
+before_deploy:
+  # Set up git user name and tag this commit
+  - git config --local user.name "Rob Herring"
+  - git config --local user.email "robh@kernel.org"
+  - git tag -f draft
+
+deploy:
+  provider: releases
+  api_key: "gV3iePsNZMkT32Wi2zSC"
+  file: "build/latex/devicetree-specification.pdf"
+  skip_cleanup: true
+  on:
+    tags: true
+
+YAML
+
